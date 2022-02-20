@@ -6,6 +6,10 @@ const routes: Routes = [
     path: '',
     loadChildren: () => import('./pages/home').then((m) => m.HomePageModule),
   },
+  {
+    path: 'aspect-ratio',
+    loadChildren: () => import('./pages/aspect-ratio').then((m) => m.AspectRatioPageModule),
+  },
   { path: '**', redirectTo: '' },
 ];
 

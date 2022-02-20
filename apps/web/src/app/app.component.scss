@@ -1,0 +1,24 @@
+nav {
+  padding: 0 10px;
+  background-color: cyan;
+
+  .nav {
+    display: flex;
+    gap: 10px;
+    background-color: #aaa;
+    width: 100%;
+    padding: 10px;
+
+    a {
+      display: block;
+      padding: 5px 10px;
+      text-decoration: none;
+      color: #000;
+      background-color: #ddd;
+
+      &:hover {
+        background-color: #eee;
+      }
+    }
+  }
+}

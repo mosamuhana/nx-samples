@@ -16,10 +16,7 @@
 				"inlineStyleLanguage": "scss",
 				"assets": ["apps/web/src/favicon.ico", "apps/web/src/assets"],
 				"styles": ["apps/web/src/styles/styles.scss"],
-				"scripts": [],
-				"webWorkerTsConfig": "apps/web/tsconfig.worker.json",
-				"serviceWorker": true,
-				"ngswConfigPath": "apps/web/ngsw-config.json"
+				"scripts": []
 			},
 			"configurations": {
 				"production": {
