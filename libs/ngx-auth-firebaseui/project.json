@@ -1,0 +1,26 @@
+{
+	"projectType": "library",
+	"root": "libs/ngx-auth-firebaseui",
+	"sourceRoot": "libs/ngx-auth-firebaseui/src",
+	"prefix": "org",
+	"targets": {
+		"test": {
+			"executor": "@nrwl/jest:jest",
+			"outputs": ["coverage/libs/ngx-auth-firebaseui"],
+			"options": {
+				"jestConfig": "libs/ngx-auth-firebaseui/jest.config.js",
+				"passWithNoTests": true
+			}
+		},
+		"lint": {
+			"executor": "@nrwl/linter:eslint",
+			"options": {
+				"lintFilePatterns": [
+					"libs/ngx-auth-firebaseui/src/**/*.ts",
+					"libs/ngx-auth-firebaseui/src/**/*.html"
+				]
+			}
+		}
+	},
+	"tags": []
+}

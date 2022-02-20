@@ -1,0 +1,7 @@
+{
+    "svg.preview.background": "editor",
+    "editor.insertSpaces": false,
+    "prettier.useTabs": true,
+    "angular-formatter.indentWidth": 2,
+    "editor.tabSize": 2
+}

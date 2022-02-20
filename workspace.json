@@ -1,0 +1,13 @@
+{
+	"version": 2,
+	"projects": {
+		"angular-material-template": "apps/angular-material-template",
+		"angular-material-template2": "apps/angular-material-template2",
+		"api": "apps/api",
+		"appwrite-app": "apps/appwrite-app",
+		"fire-advanced": "apps/fire-advanced",
+		"fire-modular": "apps/fire-modular",
+		"ngx-auth-firebaseui": "libs/ngx-auth-firebaseui",
+		"web": "apps/web"
+	}
+}

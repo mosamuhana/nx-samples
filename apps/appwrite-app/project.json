@@ -1,0 +1,94 @@
+{
+	"projectType": "application",
+	"root": "apps/appwrite-app",
+	"sourceRoot": "apps/appwrite-app/src",
+	"prefix": "org",
+	"targets": {
+		"build": {
+			"executor": "@angular-devkit/build-angular:browser",
+			"outputs": ["{options.outputPath}"],
+			"options": {
+				"outputPath": "dist/apps/appwrite-app",
+				"index": "apps/appwrite-app/src/index.html",
+				"main": "apps/appwrite-app/src/main.ts",
+				"polyfills": "apps/appwrite-app/src/polyfills.ts",
+				"tsConfig": "apps/appwrite-app/tsconfig.app.json",
+				"inlineStyleLanguage": "scss",
+				"assets": [
+					"apps/appwrite-app/src/favicon.ico",
+					"apps/appwrite-app/src/assets"
+				],
+				"styles": ["apps/appwrite-app/src/styles.scss"],
+				"scripts": []
+			},
+			"configurations": {
+				"production": {
+					"budgets": [
+						{
+							"type": "initial",
+							"maximumWarning": "500kb",
+							"maximumError": "1mb"
+						},
+						{
+							"type": "anyComponentStyle",
+							"maximumWarning": "2kb",
+							"maximumError": "4kb"
+						}
+					],
+					"fileReplacements": [
+						{
+							"replace": "apps/appwrite-app/src/environments/environment.ts",
+							"with": "apps/appwrite-app/src/environments/environment.prod.ts"
+						}
+					],
+					"outputHashing": "all"
+				},
+				"development": {
+					"buildOptimizer": false,
+					"optimization": false,
+					"vendorChunk": true,
+					"extractLicenses": false,
+					"sourceMap": true,
+					"namedChunks": true
+				}
+			},
+			"defaultConfiguration": "production"
+		},
+		"serve": {
+			"executor": "@angular-devkit/build-angular:dev-server",
+			"configurations": {
+				"production": {
+					"browserTarget": "appwrite-app:build:production"
+				},
+				"development": {
+					"browserTarget": "appwrite-app:build:development"
+				}
+			},
+			"defaultConfiguration": "development"
+		},
+		"extract-i18n": {
+			"executor": "@angular-devkit/build-angular:extract-i18n",
+			"options": {
+				"browserTarget": "appwrite-app:build"
+			}
+		},
+		"lint": {
+			"executor": "@nrwl/linter:eslint",
+			"options": {
+				"lintFilePatterns": [
+					"apps/appwrite-app/src/**/*.ts",
+					"apps/appwrite-app/src/**/*.html"
+				]
+			}
+		},
+		"test": {
+			"executor": "@nrwl/jest:jest",
+			"outputs": ["coverage/apps/appwrite-app"],
+			"options": {
+				"jestConfig": "apps/appwrite-app/jest.config.js",
+				"passWithNoTests": true
+			}
+		}
+	},
+	"tags": []
+}

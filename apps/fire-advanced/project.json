@@ -1,0 +1,188 @@
+{
+	"projectType": "application",
+	"root": "apps/fire-advanced",
+	"sourceRoot": "apps/fire-advanced/src",
+	"prefix": "org",
+	"targets": {
+		"build": {
+			"executor": "@angular-devkit/build-angular:browser",
+			"outputs": ["{options.outputPath}"],
+			"options": {
+				"outputPath": "dist/apps/fire-advanced",
+				"index": "apps/fire-advanced/src/index.html",
+				"main": "apps/fire-advanced/src/main.ts",
+				"polyfills": "apps/fire-advanced/src/polyfills.ts",
+				"tsConfig": "apps/fire-advanced/tsconfig.app.json",
+				"inlineStyleLanguage": "scss",
+				"assets": [
+					"apps/fire-advanced/src/favicon.ico",
+					"apps/fire-advanced/src/assets"
+				],
+				"styles": ["apps/fire-advanced/src/styles.scss"],
+				"scripts": [],
+				"webWorkerTsConfig": "apps/web/tsconfig.worker.json",
+				"serviceWorker": true,
+				"ngswConfigPath": "apps/fire-advanced/ngsw-config.json",
+				"statsJson": true,
+				"vendorChunk": true,
+				"extractLicenses": false,
+				"buildOptimizer": false,
+				"sourceMap": true,
+				"optimization": true,
+				"namedChunks": true
+			},
+			"configurations": {
+				"production": {
+					"budgets": [
+						{
+							"type": "initial",
+							"maximumWarning": "500kb",
+							"maximumError": "1mb"
+						},
+						{
+							"type": "anyComponentStyle",
+							"maximumWarning": "5kb",
+							"maximumError": "10kb"
+						}
+					],
+					"fileReplacements": [
+						{
+							"replace": "apps/fire-advanced/src/environments/environment.ts",
+							"with": "apps/fire-advanced/src/environments/environment.prod.ts"
+						},
+						{
+							"replace": "apps/fire-advanced/src/app/emulators.ts",
+							"with": "apps/fire-advanced/src/app/emulators.prod.ts"
+						}
+					],
+					"outputHashing": "all"
+				},
+				"development": {
+					"buildOptimizer": false,
+					"optimization": false,
+					"vendorChunk": true,
+					"extractLicenses": false,
+					"sourceMap": true,
+					"namedChunks": true
+				}
+			},
+			"defaultConfiguration": "production"
+		},
+		"serve": {
+			"executor": "@angular-devkit/build-angular:dev-server",
+			"configurations": {
+				"production": {
+					"browserTarget": "fire-advanced:build:production"
+				},
+				"development": {
+					"browserTarget": "fire-advanced:build:development"
+				}
+			},
+			"defaultConfiguration": "development"
+		},
+		"extract-i18n": {
+			"executor": "@angular-devkit/build-angular:extract-i18n",
+			"options": {
+				"browserTarget": "fire-advanced:build"
+			}
+		},
+		"lint": {
+			"executor": "@nrwl/linter:eslint",
+			"options": {
+				"lintFilePatterns": [
+					"apps/fire-advanced/src/**/*.ts",
+					"apps/fire-advanced/src/**/*.html"
+				]
+			}
+		},
+		"test": {
+			"executor": "@nrwl/jest:jest",
+			"outputs": ["coverage/apps/fire-advanced"],
+			"options": {
+				"jestConfig": "apps/fire-advanced/jest.config.js",
+				"passWithNoTests": true
+			}
+		},
+		"deploy": {
+			"executor": "@angular/fire:deploy",
+			"options": {
+				"ssr": "cloud-functions",
+				"prerender": true,
+				"firebaseProject": "aftest-94085",
+				"firebaseHostingSite": "aftest-94085",
+				"functionName": "ssr_sample",
+				"functionsNodeVersion": "16",
+				"region": "europe-central2",
+				"browserTarget": "fire-advanced:build:production",
+				"serverTarget": "fire-advanced:server:production",
+				"prerenderTarget": "fire-advanced:prerender:production",
+				"outputPath": "dist/apps/fire-advanced/functions"
+			}
+		},
+		"server": {
+			"executor": "@angular-devkit/build-angular:server",
+			"options": {
+				"outputPath": "dist/apps/fire-advanced/server",
+				"main": "apps/fire-advanced/server.ts",
+				"tsConfig": "apps/fire-advanced/tsconfig.server.json",
+				"optimization": false,
+				"sourceMap": true,
+				"extractLicenses": false,
+				"externalDependencies": []
+			},
+			"configurations": {
+				"production": {
+					"outputHashing": "media",
+					"fileReplacements": [
+						{
+							"replace": "apps/fire-advanced/src/environments/environment.ts",
+							"with": "apps/fire-advanced/src/environments/environment.prod.ts"
+						},
+						{
+							"replace": "apps/fire-advanced/src/app/emulators.ts",
+							"with": "apps/fire-advanced/src/app/emulators.prod.ts"
+						}
+					]
+				},
+				"development": {
+					"optimization": false,
+					"sourceMap": true,
+					"extractLicenses": false
+				}
+			},
+			"defaultConfiguration": "production"
+		},
+		"serve-ssr": {
+			"executor": "@nguniversal/builders:ssr-dev-server",
+			"configurations": {
+				"development": {
+					"browserTarget": "fire-advanced:build:development",
+					"serverTarget": "fire-advanced:server:development"
+				},
+				"production": {
+					"browserTarget": "fire-advanced:build:production",
+					"serverTarget": "fire-advanced:server:production"
+				}
+			},
+			"defaultConfiguration": "development"
+		},
+		"prerender": {
+			"executor": "@nguniversal/builders:prerender",
+			"options": {
+				"routes": ["/"]
+			},
+			"configurations": {
+				"production": {
+					"browserTarget": "fire-advanced:build:production",
+					"serverTarget": "fire-advanced:server:production"
+				},
+				"development": {
+					"browserTarget": "fire-advanced:build:development",
+					"serverTarget": "fire-advanced:server:development"
+				}
+			},
+			"defaultConfiguration": "production"
+		}
+	},
+	"tags": []
+}

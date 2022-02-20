@@ -1,0 +1,26 @@
+{
+	"compileOnSave": false,
+	"compilerOptions": {
+		"rootDir": ".",
+		"sourceMap": true,
+		"declaration": false,
+		"moduleResolution": "node",
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"importHelpers": true,
+		"target": "es2015",
+		"module": "esnext",
+		"lib": ["es2017", "dom"],
+		"skipLibCheck": true,
+		"skipDefaultLibCheck": true,
+		"baseUrl": ".",
+		"paths": {
+			"@org/auth": ["libs/auth/src/index.ts"],
+			"@org/dialog": ["libs/dialog/src/index.ts"],
+			"@org/models": ["libs/models/src/index.ts"],
+			"@org/ngx-auth-firebaseui": ["libs/ngx-auth-firebaseui/src/index.ts"],
+			"@org/toast": ["libs/toast/src/index.ts"]
+		}
+	},
+	"exclude": ["node_modules", "tmp"]
+}

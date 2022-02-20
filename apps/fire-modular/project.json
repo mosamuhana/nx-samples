@@ -1,0 +1,172 @@
+{
+	"projectType": "application",
+	"root": "apps/fire-modular",
+	"sourceRoot": "apps/fire-modular/src",
+	"prefix": "org",
+	"targets": {
+		"build": {
+			"executor": "@angular-devkit/build-angular:browser",
+			"outputs": ["{options.outputPath}"],
+			"options": {
+				"outputPath": "dist/apps/fire-modular",
+				"index": "apps/fire-modular/src/index.html",
+				"main": "apps/fire-modular/src/main.ts",
+				"polyfills": "apps/fire-modular/src/polyfills.ts",
+				"tsConfig": "apps/fire-modular/tsconfig.app.json",
+				"inlineStyleLanguage": "scss",
+				"assets": [
+					"apps/fire-modular/src/favicon.ico",
+					"apps/fire-modular/src/assets",
+					"apps/fire-modular/src/firebase-messaging-sw.js",
+					"apps/fire-modular/src/manifest.webmanifest"
+				],
+				"styles": ["apps/fire-modular/src/styles.scss"],
+				"scripts": [],
+				"statsJson": true,
+				"vendorChunk": true,
+				"extractLicenses": false,
+				"buildOptimizer": false,
+				"sourceMap": true,
+				"optimization": true,
+				"namedChunks": true,
+				"serviceWorker": true,
+				"ngswConfigPath": "apps/fire-modular/ngsw-config.json"
+			},
+			"configurations": {
+				"production": {
+					"budgets": [
+						{
+							"type": "initial",
+							"maximumWarning": "500kb",
+							"maximumError": "1mb"
+						},
+						{
+							"type": "anyComponentStyle",
+							"maximumWarning": "5kb",
+							"maximumError": "10kb"
+						}
+					],
+					"fileReplacements": [
+						{
+							"replace": "apps/fire-modular/src/environments/environment.ts",
+							"with": "apps/fire-modular/src/environments/environment.prod.ts"
+						}
+					],
+					"outputHashing": "all"
+				},
+				"development": {
+					"buildOptimizer": false,
+					"optimization": false,
+					"vendorChunk": true,
+					"extractLicenses": false,
+					"sourceMap": true,
+					"namedChunks": true
+				}
+			},
+			"defaultConfiguration": "production"
+		},
+		"serve": {
+			"executor": "@angular-devkit/build-angular:dev-server",
+			"configurations": {
+				"production": {
+					"browserTarget": "fire-modular:build:production"
+				},
+				"development": {
+					"browserTarget": "fire-modular:build:development"
+				}
+			},
+			"defaultConfiguration": "development"
+		},
+		"extract-i18n": {
+			"executor": "@angular-devkit/build-angular:extract-i18n",
+			"options": {
+				"browserTarget": "fire-modular:build"
+			}
+		},
+		"lint": {
+			"executor": "@nrwl/linter:eslint",
+			"options": {
+				"lintFilePatterns": [
+					"apps/fire-modular/src/**/*.ts",
+					"apps/fire-modular/src/**/*.html"
+				]
+			}
+		},
+		"test": {
+			"executor": "@nrwl/jest:jest",
+			"outputs": ["coverage/apps/fire-modular"],
+			"options": {
+				"jestConfig": "apps/fire-modular/jest.config.js",
+				"passWithNoTests": true
+			}
+		},
+		"deploy": {
+			"executor": "@angular/fire:deploy",
+			"options": {
+				"ssr": true,
+				"functionsNodeVersion": 16
+			}
+		},
+		"server": {
+			"executor": "@angular-devkit/build-angular:server",
+			"options": {
+				"outputPath": "dist/apps/fire-modular/server",
+				"main": "apps/fire-modular/server.ts",
+				"tsConfig": "apps/fire-modular/tsconfig.server.json",
+				"optimization": false,
+				"sourceMap": true,
+				"extractLicenses": false,
+				"externalDependencies": []
+			},
+			"configurations": {
+				"production": {
+					"outputHashing": "media",
+					"fileReplacements": [
+						{
+							"replace": "apps/fire-modular/src/environments/environment.ts",
+							"with": "apps/fire-modular/src/environments/environment.prod.ts"
+						}
+					]
+				},
+				"development": {
+					"optimization": false,
+					"sourceMap": true,
+					"extractLicenses": false
+				}
+			},
+			"defaultConfiguration": "production"
+		},
+		"serve-ssr": {
+			"executor": "@nguniversal/builders:ssr-dev-server",
+			"configurations": {
+				"development": {
+					"browserTarget": "fire-modular:build:development",
+					"serverTarget": "fire-modular:server:development"
+				},
+				"production": {
+					"browserTarget": "fire-modular:build:production",
+					"serverTarget": "fire-modular:server:production"
+				}
+			},
+			"defaultConfiguration": "development"
+		},
+		"prerender": {
+			"executor": "@nguniversal/builders:prerender",
+			"options": {
+				"routes": ["/"]
+			},
+			"configurations": {
+				"production": {
+					"browserTarget": "fire-modular:build:production",
+					"serverTarget": "fire-modular:server:production"
+				},
+				"development": {
+					"browserTarget": "fire-modular:build:development",
+					"serverTarget": "fire-modular:server:development"
+				}
+			},
+			"defaultConfiguration": "production"
+		}
+	},
+	"tags": []
+}
